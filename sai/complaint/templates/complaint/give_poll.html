@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+<head>
+		{% block head %}
+		<title>Complaint Box | poll</title>
+		{% endblock %}
+</head>
+{% block sai %}
+{% endblock %}
+{% block chintu %}
+{% endblock %}
+{% block body %}
+<hr><hr>
+<link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<body>
+{% if user.is_authenticated %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <legend>Poll your choice</legend>
+      <form method="post">
+         <div class="card">
+      <ul class="list-group list-group-flush">
+          <li class="list-group-item">Poll-Date: {{c.date}}</li>
+          <li class="list-group-item"><strong>subject:</strong> {{c.subject}}</li>
+          {% for lect in c.lecturer.all %}
+          <li class="list-group-item">lecturer: {{lect.name}}
+          <a href="{% url 'add_poll_update' pk=lect.pk %}" class="btn btn-info" onclick="van();"><i class="ion-android-done"></i></a> </li>
+          {% endfor %}
+      </ul>
+      </div>
+      </form>
+    </div>
+    <div class="col">
+      <h4>{{count}}</h4>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% else %}
+<div class="container">
+<h3>You're logged out. Login and try again</h3>
+<hr>
+<a href="/login/" class="btn btn-info" role="button">
+  Log In</a>
+
+</div>
+
+{% endif %}
+
+
+<script type="text/javascript">
+function van()
+{
+    document.getElementById('pse').style.visibility = "hidden";
+}
+</script>
+
+</body>
+{% endblock %}

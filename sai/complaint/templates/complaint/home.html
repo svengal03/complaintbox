@@ -1,0 +1,48 @@
+{% extends 'base.html'%}
+	<head>
+		{% block head %}
+		<title>Complaint Box | home</title>
+		{% endblock %}
+	</head>
+{% block sai%}
+{% endblock %}
+{% block body %}
+<hr><hr>
+<body>
+<style>
+div.card {
+    margin:auto;
+    padding: 20px;
+    text-align: left;
+    font-size: 100%;
+    font-family: verdana;
+    font-style: italic;
+    width: 110rem;
+}
+  legend
+{
+  font-size:30px;
+  text-align:center;
+  font-family: verdana;
+}
+</style>
+<div class="container">
+   <legend>Complaints Registered:</legend>
+  {% for comp in c %}
+		<li class="list-group-item">Complaint-no:{{comp.complaintno}}</li>
+  <div class="card">
+  <div class="card-header">
+  </div>
+  <ul class="list-group list-group-flush">
+
+    <li class="list-group-item">USER : {{comp.user}}</li>
+    <li class="list-group-item">Title : {{comp.title}}</li>
+		<li class="list-group-item">Category : {{comp.category}}</li>
+    <li class="list-group-item">Description: {{comp.description}}</li>
+    <li class="list-group-item">Time : {{comp.created_date}}</li>
+  </ul>
+</div>
+    {% endfor %}
+</div>
+{% endblock %}
+</body>

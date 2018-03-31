@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+<head>
+		{% block head %}
+		<title>Complaint Box | complaint</title>
+		{% endblock %}
+</head>
+{% block sai %}
+{% endblock %}
+{% block chintu %}
+{% endblock %}
+{% block body %}
+<style>
+div.container {
+    margin:auto;
+    width: 90%;
+    padding: 60px;
+  text-align: left;
+  font-family: verdana;
+  font-style: italic;
+
+}
+legend
+{
+font-size:30px;
+ text-align: center;
+}
+
+</style>
+<body>
+{% if user.is_authenticated %}
+<div class="container" >
+<legend>Enter your complaint here</legend>
+<form method="post">
+    {% csrf_token %}
+    {{ comp.as_p }}
+      <button type="submit" class="btn btn-danger" name="button">Submit</button>
+</form>
+</div>
+{% else %}
+<div class="container">
+<h3>You're logged out. Login and try again</h3>
+<hr>
+<a href="/login/" class="btn btn-info" role="button">
+  Log In</a>
+
+</div>
+
+{% endif %}
+{% endblock %}
+</body>

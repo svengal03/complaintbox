@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+<head>
+		{% block head %}
+		<title>Complaint Box | poll</title>
+		{% endblock %}
+</head>
+
+{% block body %}
+<hr><hr>
+<link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<body>
+{% if user.is_authenticated %}
+<div class="container" >
+<legend>Poll your choice</legend>
+<form method="post">
+	<div id="pse">
+ {% for choice in c %}
+   <div class="card">
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">Poll-Date: {{choice.date}}</li>
+    <li class="list-group-item"><strong>subject:</strong> {{choice.subject}}</li>
+
+		  <li class="list-group-item"><a href="{% url 'give_poll_with_pk' pk=choice.pk %}" class="btn btn-primary">Add your vote</a></li>
+</ul>
+
+</div>
+</div>
+</form>
+
+{% endfor %}
+
+{% else %}
+<div class="container">
+<h3>You're logged out. Login and try again</h3>
+<hr>
+<a href="/login/" class="btn btn-info" role="button">
+  Log In</a>
+
+</div>
+
+{% endif %}
+
+
+<script type="text/javascript">
+function van()
+{
+    document.getElementById('pse').style.visibility = "hidden";
+}
+</script>
+{% endblock %}
+</body>

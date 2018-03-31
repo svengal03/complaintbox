@@ -1,0 +1,39 @@
+
+{% extends 'base.html'%}
+{% block head %}
+ <title>Complaint Box | Login</title>
+{% endblock %}
+{% block sai %}
+{% endblock %}
+{% block body %}
+<style>
+body{
+  background-image:url(https://blog.ipleaders.in/wp-content/uploads/2016/08/complaint.jpg);
+  /*background-position:center;*/
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+  legend
+{
+font-size:30px;
+}
+</style>
+  <body>
+
+    {% if user.is_authenticated %}
+    <hr><hr>
+    <h2>you have already logged in</h2>
+    {% else %}
+
+    <div class="container text-center">
+      <legend>Log In</legend>
+    <form method="post" class="">
+      {% csrf_token %}
+      {{form.as_p}}
+        <button type="submit" class="btn btn-primary" name="button">Log In</button>
+    </form>
+    {% endif %}
+
+</div>
+</body>
+{% endblock %}
